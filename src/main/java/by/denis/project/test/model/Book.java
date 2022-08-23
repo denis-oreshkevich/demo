@@ -2,7 +2,11 @@ package by.denis.project.test.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -10,39 +14,40 @@ import javax.persistence.Table;
 @Table(name = "book")
 public class Book {
 
-	@Id
-	@Column(name = "code")
-	private String code;
+  @Id
+  @Column(name = "code")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long code;
 
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "author_code")
-	@ManyToOne
-	private Author author;
+  @Column(name = "name")
+  private String name;
 
-	public String getCode() {
-		return code;
-	}
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "author_code")
+  private Author author;
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+  public Long getCode() {
+    return code;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public void setCode(Long code) {
+    this.code = code;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public Author getAuthor() {
-		return author;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
+  public Author getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(Author author) {
+    this.author = author;
+  }
 
 }

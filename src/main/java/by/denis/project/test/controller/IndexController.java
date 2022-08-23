@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-	private static final String HI = "Hi, ";
-	private static final String GIVEN_NAME = "given_name";
+  private static final String HI = "Hi, ";
+  private static final String GIVEN_NAME = "given_name";
 
-	@GetMapping("/")
-	public ResponseEntity<String> index(@AuthenticationPrincipal OAuth2User user) {
-		return ResponseEntity.ok(HI + user.getAttribute(GIVEN_NAME));
-	}
+  @GetMapping("/")
+  public ResponseEntity<String> index(@AuthenticationPrincipal OAuth2User user) {
+
+    return ResponseEntity.ok(HI + user.getAttribute(GIVEN_NAME));
+  }
 
 }
